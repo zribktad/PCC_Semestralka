@@ -21,7 +21,7 @@ bool Compressor::compressFile(const std::string &inputFileName, const std::strin
         cout << "Empty file! Process Stop." << endl;
         return false;
     }
-    cout << "File opened." << endl;
+    cout << "File opened. ( size:  " << inputFile.size() << "letters) " << endl;
     cout << "Counting letters." << endl;
     auto countForLetter = countLetters(inputFile);
     //showCountLetters(countForLetter);
@@ -53,9 +53,9 @@ bool Compressor::compressFileParallel(const std::string &inputFileName, const st
         cout << "Empty file! Process Stop." << endl;
         return false;
     }
-    cout << "File opened." << endl;
+    cout << "File opened. ( size:  " << inputFile.size() << "letters) " << endl;
     cout << "Counting letters." << endl;
-    auto countForLetter = countLetters(inputFile, true); //TODO false -> true
+    auto countForLetter = countLetters(inputFile, true);
     //showCountLetters(countForLetter);
     cout << "Creating huffman tree." << endl;
     Node *root = huffmanCode::huffmanTree(countForLetter);
@@ -69,7 +69,7 @@ bool Compressor::compressFileParallel(const std::string &inputFileName, const st
     Writter::openFileOut(outputFileName);
     cout << "Writing the header to the file." << endl;
     Writter::writeHeader(codex);
-    Writter::closeFileOut();
+    Writter::closeFile();
     cout << "Translating file." << endl;
     vector<std::string> compressData(NUM_OF_TRREADS_NOW);
     cout << "Translate to string of 0/1: " << endl;
@@ -86,7 +86,6 @@ bool Compressor::compressFileParallel(const std::string &inputFileName, const st
 
     cout << "Connecting bytes." <<endl;
     string data = putTogetherString(compressFin);
-
     cout << "Saving file." << endl;
     Writter::saveStringToFile(data, outputFileName, true);
     cout << "Parallel compression finished." << endl;

@@ -26,7 +26,7 @@ public:
    static void saveStringToFile(const string &data, const string &filename, bool append);
    static void openFileOut(const string &fileName);
 
-    void closeFile();
+   static  void closeFile();
 };
 
 
