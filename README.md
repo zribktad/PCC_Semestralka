@@ -4,6 +4,8 @@ Implementacia kompresora ascii suborov pomocou Huffmanoveho kodovania.
 
 Implementovanie na windows platforme pomocou Clionu.
 
+Navod na pouzite pomocou --help argumentu:
+![obrázok](https://user-images.githubusercontent.com/87422929/195104807-268349af-0178-492e-bad7-d8750d0c4579.png)
 
 
 Porovnanie viac jadrovej a jednojadrovej implementacii pri subore s rovnomerne rozlozenym poctom charakterov 10000000.
