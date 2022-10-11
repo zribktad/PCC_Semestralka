@@ -1,5 +1,5 @@
 //
-// Created by smajl on 8. 10. 2022.
+// Created by zribktad  on 8. 10. 2022.
 //
 
 #ifndef SEM_STRINGWRITTER_H

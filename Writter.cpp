@@ -1,5 +1,5 @@
 //
-// Created by smajl on 10/4/2022.
+// Created by zribktad  on 10/4/2022.
 //
 
 #include <bitset>
