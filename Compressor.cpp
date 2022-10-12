@@ -28,9 +28,11 @@ bool Compressor::compressFile(const std::string &inputFileName, const std::strin
     cout << "Creating huffman tree." << endl;
     Node *root = huffmanCode::huffmanTree(countForLetter);
     // huffmanCode::TreeShow(root);
+
     cout << "Creating translator." << endl;
     map<unsigned char, string> codex;
     huffmanCode::GetCodes(root, codex);
+    //ShowCodex(codex);
     huffmanCode::removeTree(root);
     cout << "Creating compressFileParallel file." << endl;
     Writter::openFileOut(outputFileName);
@@ -59,7 +61,7 @@ bool Compressor::compressFileParallel(const std::string &inputFileName, const st
     //showCountLetters(countForLetter);
     cout << "Creating huffman tree." << endl;
     Node *root = huffmanCode::huffmanTree(countForLetter);
-    // huffmanCode::TreeShow(root);
+     //huffmanCode::TreeShow(root);
     cout << "Creating translator." << endl;
     map<unsigned char, string> codex;
     huffmanCode::GetCodes(root, codex);
@@ -184,7 +186,7 @@ unordered_map<unsigned char, atomic<int>> Compressor::countLetters(const string 
 }
 
 
-void Compressor::showCountLetters(unordered_map<unsigned char, int> &map) {
+void Compressor::showCountLetters(unordered_map<unsigned char, atomic<int>> &map) {
     cout << "Letters : ";
     for (auto &itr: map) {
         cout << itr.first << ": " << itr.second << ", ";
@@ -222,7 +224,7 @@ string Compressor::translateFileBack(map<string, unsigned char> &codex, const st
     unsigned long index = 0;
     const unsigned long max_size = inputFile.size() - 1;
     while (compress.size() > 0 || max_size > index) {
-        if (compress.size() < 8 && max_size > index) {
+        if (compress.size() < 16 && max_size > index) {
             const auto c = inputFile[index];
             compress.append(std::bitset<8>(c).to_string());
             index++;

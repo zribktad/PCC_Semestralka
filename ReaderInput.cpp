@@ -29,11 +29,30 @@ bool ReaderInput::readCompressFile(const std::string& fileName) {
 
     try {
 
-        for (int i = 1; i < ((unsigned char) content[0]) * 3; i += 3) {
-            string code = std::bitset<8>(content[i + 2]).to_string().substr(8 - ((unsigned char) content[i + 1]));
-            codex.insert(pair<string, unsigned char>(code, content[i]));
+//        for (int i = 1; i < ((unsigned char) content[0]) * 3; i += 3) {
+//             char &code_bin = content[i + 2];
+//            auto size_of_bin = (unsigned short) content[i + 1];
+//            cout << code_bin << " :  " << std::bitset<8>(code_bin).to_string().substr(8 - size_of_bin) << endl;
+//            string code = std::bitset<8>(code_bin).to_string().substr(8 - size_of_bin);
+//            codex.insert(pair<string, unsigned char>(code, content[i]));
+//        }
+        int counter =0,i=1;
+        while(counter != content[0]){
+            auto letter = content[i];
+            i++;
+            auto size_of_bin = (unsigned short) content[i];
+            i++;
+            string code;
+            for (int j = 0; j < size_of_bin; ++j) {
+
+                code.push_back(content[i]);
+                i++;
+            }
+            codex.insert(pair<string, unsigned char>(code, letter));
+            counter++;
         }
-        compressFile = content.substr(((unsigned char) content[0]) * 3 + 1);
+
+        compressFile = content.substr(i );
         content.clear();
     }
     catch(...){

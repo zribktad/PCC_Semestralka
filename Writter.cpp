@@ -58,8 +58,9 @@ void Writter::writeHeader(const map<unsigned char, string> &codex) {
         unsigned char size_num = itr.second.size();
         putc(size_num,fileOut);
        // fwrite(&size_num,sizeof(unsigned char),1,fileOut);
-        unsigned char num= std::bitset<8>(itr.second).to_ulong();
-        putc(num,fileOut);
+      // char num= std::bitset<8>(itr.second).to_ulong();
+       for(auto c : itr.second)
+        putc(c,fileOut);
     }
 
 

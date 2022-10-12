@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
             }
         }
     } else if (argc == 4) {
-        if (!strcmp(argv[1], "--decomp") | !strcmp(argv[1], "-d")) {
+        if (!strcmp(argv[1], "--decomp") | !strcmp(argv[1], "-dc")) {
             start = true;
             Compressor::decompress(argv[2], argv[3]);
         } else if ((!strcmp(argv[1], "--comp") | !strcmp(argv[1], "-c"))) {

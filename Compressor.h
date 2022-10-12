@@ -17,7 +17,7 @@ using namespace  std;
 class Compressor {
 
     static unordered_map<unsigned char, atomic<int>> countLetters(const string &file, const bool parallel= false);
-    static void showCountLetters(unordered_map<unsigned char, int> & map);
+    static void showCountLetters(unordered_map<unsigned char, atomic<int>> & map);
     static void translateFile(std::map<unsigned char, string> &codex, const string &inputFile);
     static string translateFileBack(std::map<string,unsigned char > &codex, const string &inputFile);
     static string translateFileToString(map<unsigned char, string> &codex, const string &inputFile, const unsigned long start, const unsigned long end);
