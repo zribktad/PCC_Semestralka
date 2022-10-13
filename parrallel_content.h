@@ -26,7 +26,6 @@ void parallel_for_block(unsigned nb_elements,
                   bool use_threads = true)
 {
     std::vector< std::thread > my_threads(nb_elements);
-
     if( use_threads )
     {
         for(unsigned i = 0; i < nb_elements; ++i)
